@@ -7,6 +7,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 		.split("; ")
 		.find((row) => row.startsWith("jwt="))
 		?.split("=")[1];
+	console.log(token);
 	return token ? (
 		<Component {...rest} />
 	) : (
