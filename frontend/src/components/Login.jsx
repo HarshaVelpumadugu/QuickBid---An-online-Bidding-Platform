@@ -16,7 +16,7 @@ function Login() {
 
 	useEffect(() => {
 		if (isLoggedIn) {
-		  navigate("/profile");
+			navigate("/profile");
 		}
 	}, [isLoggedIn, navigate]);
 
@@ -33,10 +33,6 @@ function Login() {
 				login();
 				toast.success("Logged in Successfully!");
 				navigate("/profile");
-				// Delay navigation to ensure toast is visible
-				//setTimeout(() => {
-				//	navigate("/profile");
-				//}, 1000);
 			}
 		} catch (err) {
 			setError(err.response?.data?.message || "An error occurred");
@@ -46,17 +42,10 @@ function Login() {
 			setLoading(false);
 		}
 	};
-	
 
 	return (
-		<div
-			className="flex items-center justify-center min-h-screen bg-gray-700 bg-cover bg-center"
-			style={{
-				backgroundImage:
-					"url('https://source.unsplash.com/1600x900/?technology,login')",
-			}}
-		>
-			<div className="w-full max-w-md p-8 bg-gray-800 bg-opacity-80 rounded-lg shadow-lg">
+		<div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-gray-700 via-gray-800 to-black">
+			<div className="w-full max-w-md p-8 bg-gray-800 bg-opacity-90 rounded-lg shadow-lg">
 				<h2 className="mb-6 text-3xl font-semibold text-white text-center">
 					Login
 				</h2>
@@ -86,10 +75,7 @@ function Login() {
 					<div className="flex items-center justify-between mt-4">
 						<p className="text-white">
 							Don{"'"}t have an account?{" "}
-							<Link
-								to="/signup"
-								className="text-indigo-300 hover:underline"
-							>
+							<Link to="/signup" className="text-indigo-300 hover:underline">
 								Signup
 							</Link>
 						</p>
@@ -115,3 +101,4 @@ function Login() {
 }
 
 export default Login;
+
