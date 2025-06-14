@@ -25,7 +25,7 @@ function Login() {
 		setLoading(true);
 		try {
 			const res = await axios.post(
-				"/api/users/login",
+				"https://quickbid-backend.onrender.com/api/users/login",
 				{ email, password },
 				{ withCredentials: true }
 			);
