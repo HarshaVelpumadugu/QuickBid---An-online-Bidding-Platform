@@ -25,7 +25,7 @@ function Profile() {
 			if (token) {
 				try {
 					const res = await axios.post(
-						"/api/users/profile",
+						"https://quickbid-backend.onrender.com/api/users/profile",
 						{},
 						{
 							headers: { Authorization: `Bearer ${token}` },
@@ -46,7 +46,7 @@ function Profile() {
 			if (token) {
 				try {
 					const res = await axios.post(
-						"/api/auctions/user",
+						"https://quickbid-backend.onrender.com/api/auctions/user",
 						{},
 						{
 							headers: { Authorization: `Bearer ${token}` },
@@ -70,7 +70,7 @@ function Profile() {
 			if (token) {
 				try {
 					const res = await axios.post(
-						"/api/bids/user",
+						"https://quickbid-backend.onrender.com/api/bids/user",
 						{},
 						{
 							headers: { Authorization: `Bearer ${token}` },
@@ -94,7 +94,7 @@ function Profile() {
 			if (token) {
 				try {
 					const res = await axios.post(
-						"/api/auctions/won",
+						"https://quickbid-backend.onrender.com/api/auctions/won",
 						{},
 						{
 							headers: { Authorization: `Bearer ${token}` },
