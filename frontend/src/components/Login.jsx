@@ -14,9 +14,13 @@ function Login() {
 	const navigate = useNavigate();
 	const { isLoggedIn, login } = useAuth();
 
+	// Debounced navigation to prevent throttling
 	useEffect(() => {
 		if (isLoggedIn) {
-			navigate("/profile");
+			const timer = setTimeout(() => {
+				navigate("/profile");
+			}, 200); // Small delay helps avoid rapid navigation
+			return () => clearTimeout(timer);
 		}
 	}, [isLoggedIn, navigate]);
 
@@ -30,9 +34,9 @@ function Login() {
 				{ withCredentials: true }
 			);
 			if (res.status === 200) {
-				login();
+				login(); // Will trigger isLoggedIn change
 				toast.success("Logged in Successfully!");
-				navigate("/profile");
+				// Do NOT navigate here directly to avoid double redirect
 			}
 		} catch (err) {
 			setError(err.response?.data?.message || "An error occurred");
@@ -56,7 +60,7 @@ function Login() {
 							type="email"
 							id="email"
 							name="email"
-							autocomplete="email"
+							autoComplete="email"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Email"
 							value={email}
@@ -70,7 +74,7 @@ function Login() {
 							type="password"
 							id="password"
 							name="password"
-							autocomplete="current-password"
+							autoComplete="current-password"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Password"
 							value={password}
