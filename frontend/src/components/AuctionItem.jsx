@@ -25,7 +25,7 @@ function AuctionItem() {
 	useEffect(() => {
 		const fetchAuctionItem = async () => {
 			try {
-				const res = await axios.get(`/api/auctions/${id}`);
+				const res = await axios.get(`https://quickbid-backend.onrender.com/api/auctions/${id}`);
 				setAuctionItem(res.data);
 			} catch (error) {
 				console.error("Error fetching auction item:", error);
@@ -40,7 +40,7 @@ function AuctionItem() {
 			if (token) {
 				try {
 					const res = await axios.post(
-						"/api/users/profile",
+						"https://quickbid-backend.onrender.com/api/users/profile",
 						{},
 						{
 							headers: { Authorization: `Bearer ${token}` },
@@ -55,7 +55,7 @@ function AuctionItem() {
 
 		const fetchWinner = async () => {
 			try {
-				const res = await axios.get(`/api/auctions/winner/${id}`);
+				const res = await axios.get(`https://quickbid-backend.onrender.com/api/auctions/winner/${id}`);
 				setWinner(res.data.winner);
 			} catch (error) {
 				if (error.response.data.winner !== "") {
@@ -73,7 +73,7 @@ function AuctionItem() {
 		const fetchBids = async () => {
 			setLoadingBids(true);
 			try {
-				const res = await axios.get(`/api/bids/${id}`);
+				const res = await axios.get(`https://quickbid-backend.onrender.com/api/bids/${id}`);
 				const sortedBids = res.data.sort(
 					(a, b) => b.bidAmount - a.bidAmount
 				);
