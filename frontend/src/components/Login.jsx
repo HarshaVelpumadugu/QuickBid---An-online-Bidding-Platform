@@ -54,6 +54,8 @@ function Login() {
 						<FiMail className="w-6 h-6 text-gray-400 ml-3" />
 						<input
 							type="email"
+							id="email"
+							name="email"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Email"
 							value={email}
@@ -65,6 +67,8 @@ function Login() {
 						<FiLock className="w-6 h-6 text-gray-400 ml-3" />
 						<input
 							type="password"
+							id="password"
+							name="password"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Password"
 							value={password}
@@ -101,4 +105,3 @@ function Login() {
 }
 
 export default Login;
-
