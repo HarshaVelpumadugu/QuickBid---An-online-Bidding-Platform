@@ -11,7 +11,7 @@ const BidForm = () => {
 
 	useEffect(() => {
 		const fetchAuctionItem = async () => {
-			const res = await axios.get(`/api/auctions/${id}`);
+			const res = await axios.get(`https://quickbid-backend.onrender.com/api/auctions/${id}`);
 			setAuctionItem(res.data);
 			setBidAmount(res.data.startingBid || "");
 		};
@@ -27,7 +27,7 @@ const BidForm = () => {
 				.find((row) => row.startsWith("jwt="))
 				?.split("=")[1];
 			await axios.post(
-				"/api/bids",
+				"https://quickbid-backend.onrender.com/api/bids",
 				{ auctionItemId: id, bidAmount },
 				{ headers: { Authorization: `Bearer ${token}` } }
 			);
