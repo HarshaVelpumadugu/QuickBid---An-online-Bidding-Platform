@@ -56,6 +56,7 @@ function Login() {
 							type="email"
 							id="email"
 							name="email"
+							autocomplete="email"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Email"
 							value={email}
@@ -69,6 +70,7 @@ function Login() {
 							type="password"
 							id="password"
 							name="password"
+							autocomplete="current-password"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Password"
 							value={password}
