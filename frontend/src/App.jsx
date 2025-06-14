@@ -7,7 +7,6 @@ import Profile from "./components/Profile";
 import BidForm from "./components/BidForm";
 import Logout from "./components/Logout";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { useState, useEffect } from "react";
 import { AuthProvider } from "./contexts/AuthContext";
 import NavBar from "./components/NavBar";
 import Home from "./components/Home";
@@ -19,8 +18,8 @@ function App() {
 	return (
 		<AuthProvider>
 			<Router>
-			    <NavBar />
-				<Toaster/>
+				<NavBar />
+				<Toaster />
 				<div className="container mx-auto">
 					<Routes>
 						<Route path="/" element={<Home />} />
@@ -28,29 +27,50 @@ function App() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/logout" element={<Logout />} />
 						<Route path="/auctions" element={<AuctionList />} />
+
 						<Route
 							path="/profile"
 							element={
-								<ProtectedRoute component={Profile} />}
+								<ProtectedRoute>
+									<Profile />
+								</ProtectedRoute>
+							}
 						/>
+
 						<Route
 							path="/auction/:id"
-							element={<ProtectedRoute component={AuctionItem} />}
+							element={
+								<ProtectedRoute>
+									<AuctionItem />
+								</ProtectedRoute>
+							}
 						/>
+
 						<Route
 							path="/auction/create"
 							element={
-								<ProtectedRoute component={CreateAuctionItem} />}
+								<ProtectedRoute>
+									<CreateAuctionItem />
+								</ProtectedRoute>
+							}
 						/>
+
 						<Route
 							path="/auction/edit/:id"
 							element={
-								<ProtectedRoute component={EditAuctionItem} />}
+								<ProtectedRoute>
+									<EditAuctionItem />
+								</ProtectedRoute>
+							}
 						/>
+
 						<Route
 							path="/auction/bid/:id"
 							element={
-								<ProtectedRoute component={BidForm} />}
+								<ProtectedRoute>
+									<BidForm />
+								</ProtectedRoute>
+							}
 						/>
 					</Routes>
 				</div>
