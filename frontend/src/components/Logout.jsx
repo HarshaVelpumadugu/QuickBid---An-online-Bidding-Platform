@@ -15,7 +15,7 @@ function Logout() {
 
 		const logout = async () => {
 			try {
-				await axios.post("/api/users/logout", {});
+				await axios.post("https://quickbid-backend.onrender.com/api/users/logout", {});
 				document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/";
 				signout();
 				toast.success("Logged out Successfully!");
