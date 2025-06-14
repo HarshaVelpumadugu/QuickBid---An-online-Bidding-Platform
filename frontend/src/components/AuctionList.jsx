@@ -13,7 +13,7 @@ function AuctionList() {
 
 	useEffect(() => {
 		const fetchAuctionItems = async () => {
-			const res = await axios.get("/api/auctions");
+			const res = await axios.get("https://quickbid-backend.onrender.com/api/auctions");
 			setAuctionItems(res.data);
 			setSearchResults(res.data);
 			setTotalPages(Math.ceil(res.data.length / ITEMS_PER_PAGE));
