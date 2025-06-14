@@ -11,7 +11,7 @@ const PORT=process.env.PORT;
 dotenv.config();
 //configuring backend to allow requests from frontend
 app.use(cors({
-    origin:'http://localhost:3001',
+    origin:'https://quickbid-frontend.onrender.com',
     methods:['GET','POST','PUT','DELETE'],
     credentials:true,
 }));
