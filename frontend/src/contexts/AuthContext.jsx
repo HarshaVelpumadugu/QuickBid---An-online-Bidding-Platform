@@ -1,5 +1,5 @@
 // AuthContext.js
-import { createContext, useContext, useEffect, useState } from "react";Add commentMore actions
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
