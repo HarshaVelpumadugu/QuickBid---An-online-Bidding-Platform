@@ -20,10 +20,10 @@ function Profile() {
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			// const token = document.cookie
-			// 	.split("; ")
-			// 	.find((row) => row.startsWith("jwt="))
-			// 	?.split("=")[1];
+			const token = document.cookie
+				.split("; ")
+				.find((row) => row.startsWith("jwt="))
+				?.split("=")[1];
 			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
@@ -41,10 +41,10 @@ function Profile() {
 		};
 
 		const fetchAuctions = async () => {
-			// const token = document.cookie
-			// .split("; ")
-			// .find((row) => row.startsWith("jwt="))
-			// ?.split("=")[1];
+			const token = document.cookie
+			.split("; ")
+			.find((row) => row.startsWith("jwt="))
+			?.split("=")[1];
 			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
@@ -65,10 +65,10 @@ function Profile() {
 		};
 
 		const fetchBids = async () => {
-			// const token = document.cookie
-			// 	.split("; ")
-			// 	.find((row) => row.startsWith("jwt="))
-			// 	?.split("=")[1];
+			const token = document.cookie
+				.split("; ")
+				.find((row) => row.startsWith("jwt="))
+				?.split("=")[1];
 			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
@@ -89,10 +89,10 @@ function Profile() {
 		};
 
 		const fetchWonAuctions = async () => {
-			// const token = document.cookie
-			// 	.split("; ")
-			// 	.find((row) => row.startsWith("jwt="))
-			// 	?.split("=")[1];
+			const token = document.cookie
+				.split("; ")
+				.find((row) => row.startsWith("jwt="))
+				?.split("=")[1];
 			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
