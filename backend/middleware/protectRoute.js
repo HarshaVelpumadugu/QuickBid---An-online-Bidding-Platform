@@ -3,14 +3,14 @@ import User from '../models/user.js';
 
 export const protectRoute = async (req, res, next) => {
   try {
-    //const token = req.headers.authorization?.startsWith("Bearer")
-      //? req.headers.authorization.split(" ")[1]
-      //: req.cookies?.jwt;
-      const token = req.rawHeaders
-      .find((header) => header.includes("jwt="))
-      .split("; ")
-      .find((row) => row.startsWith("jwt="))
-      ?.split("=")[1];
+    const token = req.headers.authorization?.startsWith("Bearer")
+      ? req.headers.authorization.split(" ")[1]
+      : req.cookies?.jwt;
+      // const token = req.rawHeaders
+      // .find((header) => header.includes("jwt="))
+      // .split("; ")
+      // .find((row) => row.startsWith("jwt="))
+      // ?.split("=")[1];
     console.log("Received Token:", token); // 🔍 Debugging Line
 
     if (!token) {
