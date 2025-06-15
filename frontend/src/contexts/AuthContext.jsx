@@ -1,32 +1,28 @@
-import { createContext, useContext, useState, useEffect } from "react";
+// AuthContext.js
+import { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
-export const AuthContext = createContext({
-  isLoggedIn: false,
-  login: () => {},
-  logout: () => {},
-});
+const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  const login = () => setIsLoggedIn(true);
-  const logout = () => setIsLoggedIn(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
-    const token = document.cookie
-      .split("; ")
-      .find((row) => row.startsWith("jwt="))
-      ?.split("=")[1];
-    
-    if (token) {
-      login();
-    } else {
-      logout();
-    }
+    const check = async () => {
+      try {
+        const res = await axios.get("https://quickbid-backend.onrender.com/api/users/check-auth", {
+          withCredentials: true,
+        });
+        setIsAuthenticated(res.status === 200);
+      } catch {
+        setIsAuthenticated(false);
+      }
+    };
+    check();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
