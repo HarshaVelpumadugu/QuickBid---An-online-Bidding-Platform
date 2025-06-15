@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const NavBar = () => {
-	const { isLoggedIn } = useAuth();
+	const { isAuthenticated } = useAuth();
 	const [isOpen, setIsOpen] = useState(false);
 
 	return (
@@ -53,7 +53,7 @@ const NavBar = () => {
 								Auctions
 							</Link>
 						</li>
-						{!isLoggedIn && (
+						{isAuthenticated === false && (
 							<>
 								<li>
 									<Link
@@ -73,7 +73,7 @@ const NavBar = () => {
 								</li>
 							</>
 						)}
-						{isLoggedIn && (
+						{isAuthenticated === true && (
 							<>
 								<li>
 									<Link
