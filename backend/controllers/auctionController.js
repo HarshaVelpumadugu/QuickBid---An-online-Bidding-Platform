@@ -38,6 +38,11 @@ export const getAuctionItems = async (req, res) => {
 };
 export const getAuctionItemById = async (req, res) => {
 	const { id } = req.params;
+
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(400).json({ message: "Invalid auction ID" });
+	}
+
 	try {
 		const auctionItem = await AuctionItem.findById(id);
 		if (!auctionItem) {
