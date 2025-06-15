@@ -103,3 +103,20 @@ export const logoutUser=async(req,res)=>{
         res.status(500).json({error:"Internal Server Error"});
     }
 };
+export const checkAuth = async (req, res) => {
+  try {
+    const token = req.cookies.jwt;
+
+    if (!token) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    // You can optionally attach user info
+    return res.status(200).json({ message: "Authenticated", user: decoded });
+  } catch (err) {
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
+
