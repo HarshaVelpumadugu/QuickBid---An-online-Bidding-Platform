@@ -13,3 +13,4 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Navigate to="/login" state={{ from: location }} replace />
   );
 };
+export default ProtectedRoute;
