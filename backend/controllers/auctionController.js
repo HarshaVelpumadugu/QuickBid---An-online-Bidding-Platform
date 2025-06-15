@@ -50,7 +50,8 @@ export const getAuctionItemById = async (req, res) => {
 };
 export const getAuctionItemsByUser = async (req, res) => {
 	try {
-		const token = req.headers.authorization.split(" ")[1];
+		// token = req.headers.authorization.split(" ")[1];
+		const token=req.cookies.jwt;
 		const { id } = jwt.decode(token, process.env.JWT_SECRET, (err) => {
 			if (err) {
 				console.log(err);
@@ -167,7 +168,8 @@ export const getAuctionWinner = async (req, res) => {
 
 export const getAuctionsWonByUser = async (req, res) => {
 	try {
-		const token = req.headers.authorization.split(" ")[1];
+		//const token = req.headers.authorization.split(" ")[1];
+		const token=req.cookies.jwt;
 		const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 		const { id } = decodedToken;
 
