@@ -4,6 +4,7 @@ import { useAuth } from "../contexts/AuthContext"; // adjust path
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
+  console.log("status:",isAuthenticated);
 
   return isAuthenticated ? (
     <Component {...rest} />
