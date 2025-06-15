@@ -69,8 +69,8 @@ export const loginUser=async(req,res)=>{
 };
 export const getProfile=async(req,res)=>{
     try{
-        //const token=req.headers.authorization.split(" ")[1];
-        const token=req.cookies.jwt;
+        const token=req.headers.authorization.split(" ")[1];
+        //const token=req.cookies.jwt;
         const decoded=jwt.decode(token,process.env.JWT_SECRET);
         if(!decoded){
             return res.status(401).json({error:"Invalid Token"});
