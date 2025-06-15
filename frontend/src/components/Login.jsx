@@ -12,17 +12,16 @@ function Login() {
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState("");
 	const navigate = useNavigate();
-	const { isLoggedIn, login } = useAuth();
+	const { isAuthenticated, login } = useAuth();
 
-	// Debounced navigation to prevent throttling
 	useEffect(() => {
-		if (isLoggedIn) {
+		if (isAuthenticated) {
 			const timer = setTimeout(() => {
 				navigate("/profile");
-			}, 200); // Small delay helps avoid rapid navigation
+			}, 200);
 			return () => clearTimeout(timer);
 		}
-	}, [isLoggedIn, navigate]);
+	}, [isAuthenticated, navigate]);
 
 	const handleLogin = async (e) => {
 		e.preventDefault();
@@ -34,9 +33,8 @@ function Login() {
 				{ withCredentials: true }
 			);
 			if (res.status === 200) {
-				login(); // Will trigger isLoggedIn change
+				login(); // update auth context
 				toast.success("Logged in Successfully!");
-				// Do NOT navigate here directly to avoid double redirect
 			}
 		} catch (err) {
 			setError(err.response?.data?.message || "An error occurred");
@@ -58,8 +56,6 @@ function Login() {
 						<FiMail className="w-6 h-6 text-gray-400 ml-3" />
 						<input
 							type="email"
-							id="email"
-							name="email"
 							autoComplete="email"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Email"
@@ -72,8 +68,6 @@ function Login() {
 						<FiLock className="w-6 h-6 text-gray-400 ml-3" />
 						<input
 							type="password"
-							id="password"
-							name="password"
 							autoComplete="current-password"
 							className="w-full px-4 py-2 bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400"
 							placeholder="Password"
