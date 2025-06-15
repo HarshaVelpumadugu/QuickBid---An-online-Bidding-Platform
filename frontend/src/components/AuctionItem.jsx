@@ -122,7 +122,7 @@ function AuctionItem() {
 
 	const handleDelete = async () => {
 		try {
-			await axios.delete(`/api/auctions/${id}`);
+			await axios.delete(`https://quickbid-backend.onrender.com/api/auctions/${id}`);
 			navigate("/profile");
 		} catch (error) {
 			console.error("Error deleting auction item:", error);
