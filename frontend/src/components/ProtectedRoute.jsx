@@ -5,8 +5,6 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   const location = useLocation();
   const { isAuthenticated } = useAuth();
 
-  if (isAuthenticated === null) return <div>Loading...</div>;
-
   return isAuthenticated ? (
     <Component {...rest} />
   ) : (
