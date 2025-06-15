@@ -23,14 +23,14 @@ export const registerUser=async(req,res)=>{
             password:hashedPassword
         });
         await newUser.save();
-        res.status(201).json({
+        return res.status(201).json({
             id:newUser._id,
             username:newUser.username,
             email:newUser.email,
         });
     }
     catch(err){
-        res.status(500).json({error:err.message});
+        return res.status(500).json({error:err.message});
     }
 };
 export const loginUser=async(req,res)=>{
@@ -56,7 +56,7 @@ export const loginUser=async(req,res)=>{
             secure:true,
             expires:new Date(Date.now()+24*60*60*1000),
         });
-        res.status(200).json({
+        return res.status(200).json({
             id:user._id,
             username:user.username,
             email:user.email,
@@ -64,12 +64,13 @@ export const loginUser=async(req,res)=>{
         });
     }
     catch(err){
-        res.status(500).json({error:"Internal server error"});
+       return res.status(500).json({error:"Internal server error"});
     }
 };
 export const getProfile=async(req,res)=>{
     try{
-        const token=req.headers.authorization.split(" ")[1];
+        //const token=req.headers.authorization.split(" ")[1];
+        const token=req.cookies.jwt;
         const decoded=jwt.decode(token,process.env.JWT_SECRET);
         if(!decoded){
             return res.status(401).json({error:"Invalid Token"});
@@ -79,7 +80,7 @@ export const getProfile=async(req,res)=>{
         if(!user){
             return res.status(404).json({error:"User not Found"});
         }
-        res.status(200).json({
+        return res.status(200).json({
             id:user._id,
             username:user.username,
             email:user.email,
@@ -97,10 +98,10 @@ export const logoutUser=async(req,res)=>{
             expires:new Date(0),
             secure:true,
         });
-        res.status(200).json({message:"Logged Out Successfully"});
+       return res.status(200).json({message:"Logged Out Successfully"});
     }
     catch(err){
-        res.status(500).json({error:"Internal Server Error"});
+       return res.status(500).json({error:"Internal Server Error"});
     }
 };
 export const checkAuth = async (req, res) => {
