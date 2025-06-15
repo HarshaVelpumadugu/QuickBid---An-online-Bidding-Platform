@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import {useAuth} from "../contexts/AuthContext";
 
 const ITEMS_PER_PAGE = 3;
 
@@ -15,14 +16,15 @@ function Profile() {
 	const [totalPagesAuctions, setTotalPagesAuctions] = useState(1);
 	const [totalPagesBids, setTotalPagesBids] = useState(1);
 	const [totalPagesWon, setTotalPagesWon] = useState(1);
+	const{isAuthenticated}=useAuth();
 
 	useEffect(() => {
 		const fetchUser = async () => {
-			const token = document.cookie
-				.split("; ")
-				.find((row) => row.startsWith("jwt="))
-				?.split("=")[1];
-			if (token) {
+			// const token = document.cookie
+			// 	.split("; ")
+			// 	.find((row) => row.startsWith("jwt="))
+			// 	?.split("=")[1];
+			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
 						"https://quickbid-backend.onrender.com/api/users/profile",
@@ -39,11 +41,11 @@ function Profile() {
 		};
 
 		const fetchAuctions = async () => {
-			const token = document.cookie
-			.split("; ")
-			.find((row) => row.startsWith("jwt="))
-			?.split("=")[1];
-			if (token) {
+			// const token = document.cookie
+			// .split("; ")
+			// .find((row) => row.startsWith("jwt="))
+			// ?.split("=")[1];
+			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
 						"https://quickbid-backend.onrender.com/api/auctions/user",
@@ -63,11 +65,11 @@ function Profile() {
 		};
 
 		const fetchBids = async () => {
-			const token = document.cookie
-				.split("; ")
-				.find((row) => row.startsWith("jwt="))
-				?.split("=")[1];
-			if (token) {
+			// const token = document.cookie
+			// 	.split("; ")
+			// 	.find((row) => row.startsWith("jwt="))
+			// 	?.split("=")[1];
+			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
 						"https://quickbid-backend.onrender.com/api/bids/user",
@@ -87,11 +89,11 @@ function Profile() {
 		};
 
 		const fetchWonAuctions = async () => {
-			const token = document.cookie
-				.split("; ")
-				.find((row) => row.startsWith("jwt="))
-				?.split("=")[1];
-			if (token) {
+			// const token = document.cookie
+			// 	.split("; ")
+			// 	.find((row) => row.startsWith("jwt="))
+			// 	?.split("=")[1];
+			if (isAuthenticated) {
 				try {
 					const res = await axios.post(
 						"https://quickbid-backend.onrender.com/api/auctions/won",
